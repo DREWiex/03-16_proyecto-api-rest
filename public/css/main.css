@@ -11,6 +11,11 @@ ul{
     gap: 40px;
 }
 
+a, a:hover, a:link, a:visited{
+    text-decoration: none;
+    color: crimson;
+}
+
 footer{
     font-size: 20px;
     margin-top: 60px;
