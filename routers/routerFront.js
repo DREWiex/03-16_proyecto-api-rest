@@ -1,10 +1,13 @@
-const express = require('express'); //* destructuring de la clase: const {Router()} = require('express');
+//* importar express
+const express = require('express'); //* otra opción destructurando la clase: const {Router()} = require('express');
 
+//* llamar a la clase Router() de express
 const router = express.Router();
 
-const {getIndex, getServicios, getProductos, getQuienesSomos, getContacto, getNav, getNavOtros} = require('../controllers/frontControllers'); //* destructuring de las funciones (solo el nombre –sin paréntesis–, no la invocación) que están en el archivo frontControllers.js en la ruta del controllers
+const {getIndex, getServicios, getProductos, getInstalaciones, getQuienesSomos, getContacto, getNav, getNavOtros} = require('../controllers/frontControllers'); //* destructuring de las funciones (solo el nombre –sin paréntesis–, no la invocación) que están en el archivo frontControllers.js en la ruta del controllers
 
 
+//! crear las rutas:
 //* INDEX
 router.get('/', getIndex); //* paso la referencia de la función, no la invocación
 
@@ -13,6 +16,9 @@ router.get('/servicios', getServicios);
 
 //* PRODUCTOS
 router.get('/productos', getProductos);
+
+//* INSTALACIONES
+router.get('/instalaciones', getInstalaciones);
 
 //* QUIENESSOMOS
 router.get('/quienessomos', getQuienesSomos);
@@ -27,4 +33,4 @@ router.get('/templates/nav-index', getNav);
 router.get('/templates/nav-otros', getNavOtros);
 
 
-module.exports = router; //* exporto el módulo para poder utilizarlo fuera de routerFront.js
+module.exports = router; //* exportar el módulo router para llamarlo en app.js

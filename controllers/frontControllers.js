@@ -1,3 +1,7 @@
+const Servicio = require('../models/servicioModel'); //* en mayúscula porque es una clase
+
+const Instalacion = require('../models/instalacionModel');
+
 const getIndex = (req, res) => { 
 
     res.render('index', {
@@ -7,12 +11,23 @@ const getIndex = (req, res) => {
 
 }; //!FUNC-GETINDEX
 
-const getServicios = (req, res) => {
+const getServicios = async (req, res) => {
 
-    res.render('servicios', {
-        title: 'Este es el título de servicios',
-        text: 'Este es el párrafo de servicios.',
-    });
+    try {
+
+        const servicios = await Servicio.find();
+
+        res.render('servicios',{
+            title: 'Este es el título de servicios',
+            text: 'Este es el párrafo de servicios.',
+            servicios
+        });
+        
+    } catch (error) {
+
+        console.log(error);
+        
+    };
 
 }; //!FUNC-GETSERVICIOS
 
@@ -24,6 +39,26 @@ const getProductos = (req, res) => {
     });
 
 }; //!FUNC-GETPRODUCTOS
+
+const getInstalaciones = async (req, res) => {
+
+    try {
+
+        const instalaciones = await Instalacion.find();
+
+        res.render('instalaciones',{
+            title: 'Este es el título de instalaciones',
+            text: 'Este es el párrafo de instalaciones',
+            instalaciones
+        })
+                
+    } catch (error) {
+
+        console.log(error);
+        
+    }
+
+}; //!FUNC-GETINSTALACIONES
 
 const getQuienesSomos = (req, res) => {
 
@@ -53,7 +88,7 @@ const getNavOtros = (req, res) => {
 
     res.render('nav-otros');
 
-};
+}; //!FUNC-GETNAVOTROS
 
 
-module.exports = {getIndex, getServicios, getProductos, getQuienesSomos, getContacto, getNav, getNavOtros};
+module.exports = {getIndex, getServicios, getProductos, getInstalaciones, getQuienesSomos, getContacto, getNav, getNavOtros};

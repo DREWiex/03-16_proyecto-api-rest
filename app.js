@@ -1,23 +1,38 @@
-//todo: ejercicio node-express
-
+//* importar el módulo express
 const express = require('express');
 
+
+//* módulo dotenv
+require('dotenv').config(); //! tiene que ir antes que la const port para que no dé undefined
+
+
+//* crear el servidor con express
 const app = express();
+const port = process.env.PORT;
 
-const port = process.env.PORT || 3000;
+
+//* conectar con la base de datos (mongodb)
+const {connection} = require('./helpers/dbConnect'); //* requiero la conexión con la base de datos
 
 
-//* configurar carpeta estática public
+
+
+//* módulo cors
+const cors = require('cors');
+
+app.use(cors());
+
+
+//* configuración carpeta estática public
 app.use(express.static(`${__dirname}/public`));
 
 
-//* configurar template engine y carpeta views
+//* configuración template engine y carpeta views
 app.set('view engine', 'ejs');
-
 app.set('views', `${__dirname}/views`);
 
 
-//* rutas
+//* routers
 app.use('/', require('./routers/routerFront')); //* función middleware para las rutas
 
 app.use((req, res, next) => {
@@ -30,7 +45,10 @@ app.use((req, res, next) => {
 });
 
 
-//* servidor a la escucha
+connection(); //! llamo a la función que conecta con la base de datos
+
+
+//* servidor a la escucha (siempre al final)
 app.listen(port, () => {
 
     console.log(`A la escucha del puerto ${port}`);

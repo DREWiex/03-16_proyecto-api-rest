@@ -1,0 +1,37 @@
+<%- include('./templates/header.ejs') %>
+
+<%- include('./templates/nav-otros.ejs') %>
+
+<main>
+
+    <h1> <%= title %> </h1>
+
+    <p> <%= text %> </p>
+
+</main>
+
+<section class="container">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Instalaciones</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <% instalaciones.forEach((item) => { %>
+             <tr>
+                <td> <%= item.instalacion %> </td>
+                <td> <%= item.descripcion %> </td>
+             </tr>
+            <% }) %>
+
+        </tbody>
+    </table>
+
+</section>
+
+<%- include('./templates/footer.ejs') %>
