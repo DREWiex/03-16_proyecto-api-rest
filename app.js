@@ -33,7 +33,9 @@ app.set('views', `${__dirname}/views`);
 
 
 //* routers
-app.use('/', require('./routers/routerFront')); //* función middleware para las rutas
+app.use('/', require('./routers/routerFront')); //* función middleware para las rutas del front
+
+app.use('/api/v1', require('./routers/routerApi')); //* función middleware para las rutas del back
 
 app.use((req, res, next) => {
 

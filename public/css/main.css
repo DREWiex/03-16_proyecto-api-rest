@@ -1,53 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;1,400&display=swap');
+
+:root {
+    --darkblue: #0A2463;
+    --lightblue: #3E92CC;
+    --white: #FFFAFF;
+    --black: #1E1B18;
+    --red: #D8315B;
+    font-size: 10px;
+}
+
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+html{
+    height: 90%;
+    margin: 0.5rem;
+}
+
 body{
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100%;
+    background-color: var(--white);
+}
+
+.grid-container{
+    display: grid;
+    gap: 0.5rem;
+    grid-template:
+    "header" 15%
+    "nav" 10%
+    "main" auto
+    "footer" 10%;
+}
+
+.grid-container > *{
     text-align: center;
 }
 
-ul{
-    display: flex;
-    justify-content: flex-end;
-    list-style: none;
-    margin-right: 20px;
-    gap: 40px;
+.header{
+    grid-area: header;
+    padding: 3rem;
 }
 
-.container{
-    display: flex;
-    justify-content: center;
-    border-collapse: collapse;
-}
-
-table{
-    border-collapse: collapse;
-    margin: 30px;
-}
-
-table, th, td{
-    border: 2px solid black;
-}
-
-th{
-    background-color: lightgray;
+header > *{
+    font-size: 4rem;
     text-transform: uppercase;
-    padding: 20px;
+    font-weight: 700;
+    word-spacing: 1rem;
+    color: var(--red)
 }
 
-td{
-    padding: 10px;
+.nav{
+    grid-area: nav;
+    align-self: center;
+}
+
+.grid-container-nav{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.grid-container-nav-otros{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);   
 }
 
 a, a:hover, a:link, a:visited{
+    font-size: 1.5rem;
     text-decoration: none;
-    color: crimson;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    color: var(--darkblue);
+    margin: 0.5rem;
 }
 
-footer{
-    font-size: 20px;
-    margin-top: 60px;
-    background-color: aquamarine;
+.main{
+    grid-area: main;
 }
+
+.grid-container-main{
+    display: grid;
+    grid-template:
+    "title" 90%
+    "text" auto /
+    80%;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+}
+
+.title{
+    grid-area: title;
+    font-size: 2.5rem;
+    text-align: center;
+    color: var(--black);
+    padding: 1.5rem;
+}
+
+.text{
+    grid-area: text;
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--black);
+    padding: 0.75rem;
+}
+
+.footer{
+    grid-area: footer;
+    padding: 2.5rem;
+}
+
+.grid-container-footer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+footer > *{
+    font-size: 2.5rem;
+    color: var(--darkblue);
+}
+
+@media screen and (min-width:768px) {
+    .grid-container{
+        grid-template:
+        "header header" 15%
+        "nav nav" 5%
+        "main main" auto
+        "footer footer" 10%
+    }
+    .nav{
+        align-self: stretch;
+    }
+}/*768px end*/
+
+@media screen and (min-width:992px) {
+    .grid-container{
+        grid-template:
+        "header header" 15%
+        "nav main" auto
+        "footer footer" 10% /
+        20% auto;
+    }
+    .title{
+        text-align: start;
+    }
+    .text{
+        text-align: justify;
+    }
+    .grid-container-nav{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: start;
+        gap: 2rem;
+    }
+    .grid-container-nav-otros{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: start;
+        gap: 2rem;
+    }
+    .nav{
+        justify-self: center;
+    }
+}/*992px end*/
+
+/* @media screen and (min-width:1200px){
+
+}1200px end */

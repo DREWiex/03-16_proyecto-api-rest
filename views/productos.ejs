@@ -1,17 +1,12 @@
 <%- include('./templates/header.ejs') %>
 
-    <header>
+<%- include('./templates/nav-otros.ejs') %>
 
-        <%- include('./templates/nav-otros.ejs') %>
-
-    </header>
-
-    <main>
-        
-        <h1> <%= title %> </h1>
-
-        <p> <%= text %> </p>
-
+    <main class="main">
+        <section class="grid-container-main">
+            <h2 class="title"> <%= title %> </h2>
+            <p class="text"> <%= text %> </p>
+        </section>
     </main>
 
-    <%- include('./templates/footer.ejs') %>
+<%- include('./templates/footer.ejs') %>

@@ -1,10 +1,6 @@
 <%- include('./templates/header.ejs') %>
     
-    <header>
-
-        <%- include('./templates/nav-otros.ejs') %>
-
-    </header>
+<%- include('./templates/nav-otros.ejs') %>
 
     <main>
 
@@ -12,24 +8,28 @@
 
         <p> <%= text %> </p>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Servicio</th>
-                    <th>Descripción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td> <%= servicios[0].servicio %> </td>
-                    <td> <%= servicios[0].descripcion %> </td>
-                </tr>
-                <tr>
-                    <td> <%= servicios[1].servicio %> </td>
-                    <td> <%= servicios[1].descripcion %> </td>
-                </tr>
-            </tbody>
-        </table>
+        <section class="container">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> <%= servicios[0].servicio %> </td>
+                        <td> <%= servicios[0].descripcion %> </td>
+                    </tr>
+                    <tr>
+                        <td> <%= servicios[1].servicio %> </td>
+                        <td> <%= servicios[1].descripcion %> </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            </section>
 
     </main>
 

@@ -5,8 +5,8 @@ const Instalacion = require('../models/instalacionModel');
 const getIndex = (req, res) => { 
 
     res.render('index', {
-        title: 'Este es el título del index',
-        text: 'Este es el párrafo del index.'
+        title: 'Bienvenido a Nuestro Club de Caballeros',
+        text: 'Transfórmate en lo que quieres ser. Con un corte de cabello, un peinado moderno o un arreglo de barba te verás como siempre has querido. Luce impecable, con estilo masculino. Siéntete tan hombre como nunca antes. Ahora, y para siempre.'
     });
 
 }; //!FUNC-GETINDEX
@@ -72,8 +72,8 @@ const getQuienesSomos = (req, res) => {
 const getContacto = (req, res) => {
 
     res.render('contacto', {
-        title: 'Este es el título de quiénes somos',
-        text: 'Este es el párrafo de quiénes somos.',
+        title: 'Este es el título de contacto',
+        text: 'Este es el párrafo de contacto.',
     });
 
 }; //!FUNC-GETCONTACTO
