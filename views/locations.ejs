@@ -5,14 +5,12 @@
         <main class="main">
             
             <section class="grid-container-main">
+
                 <h2 class="title"> <%= title %> </h2>
+
                 <p class="text"> <%= text %> </p>
-            </section>
-
-
-
-            <section>
-                <table>
+                
+                <table class="table">
                     <thead>
                         <tr>
                             <th>País</th>
@@ -22,15 +20,16 @@
 
                     <tbody>
 
-                        <% instalaciones.forEach((item) => { %>
+                        <% locations.forEach((item) => { %>
                         <tr>
-                            <td> <%= item.instalacion %> </td>
-                            <td> <%= item.descripcion %> </td>
+                            <td> <%= item.pais %> </td>
+                            <td> <%= item.ciudad %> </td>
                         </tr>
                         <% }) %>
 
                     </tbody>
                 </table>
+
             </section>
 
         </main>

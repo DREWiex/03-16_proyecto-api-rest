@@ -4,7 +4,7 @@ const express = require('express'); //* otra opción destructurando la clase: co
 //* llamar a la clase Router() de express
 const router = express.Router();
 
-const {getIndex, getServicios, getProductos, getInstalaciones, getQuienesSomos, getContacto, getNav, getNavOtros} = require('../controllers/frontControllers'); //* destructuring de las funciones (solo el nombre –sin paréntesis–, no la invocación) que están en el archivo frontControllers.js en la ruta del controllers
+const {getIndex, getServicios, getProductos, getLocations, getQuienesSomos, getContacto, getNav, getNavOtros} = require('../controllers/frontControllers'); //* destructuring de las funciones (solo el nombre –sin paréntesis–, no la invocación) que están en el archivo frontControllers.js en la ruta del controllers
 
 
 //! crear las rutas:
@@ -18,7 +18,7 @@ router.get('/servicios', getServicios);
 router.get('/productos', getProductos);
 
 //* INSTALACIONES
-router.get('/instalaciones', getInstalaciones);
+router.get('/locations', getLocations);
 
 //* QUIENESSOMOS
 router.get('/quienessomos', getQuienesSomos);

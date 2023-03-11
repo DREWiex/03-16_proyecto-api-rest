@@ -2,35 +2,36 @@
     
 <%- include('./templates/nav-otros.ejs') %>
 
-    <main>
+        <main class="main">
 
-        <h1> <%= title %> </h1>
+            <section class="grid-container-main">
 
-        <p> <%= text %> </p>
+                <h2 class="title"> <%= title %> </h2>
 
-        <section class="container">
+                <p class="text"> <%= text %> </p>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Servicio</th>
-                        <th>Descripción</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td> <%= servicios[0].servicio %> </td>
-                        <td> <%= servicios[0].descripcion %> </td>
-                    </tr>
-                    <tr>
-                        <td> <%= servicios[1].servicio %> </td>
-                        <td> <%= servicios[1].descripcion %> </td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="celda-servicio">Servicio</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <% servicios.forEach((item) => { %>
+                        <tr>
+                            <td class="celda-servicio"> <%= item.servicio %> </td>
+                            <td> <%= item.descripcion %> </td>
+                        </tr>
+                        <% }) %>
+
+                    </tbody>
+                </table>
 
             </section>
 
-    </main>
+        </main>
 
-    <%- include('./templates/footer.ejs') %>
+<%- include('./templates/footer.ejs') %>

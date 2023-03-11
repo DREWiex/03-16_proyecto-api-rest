@@ -15,8 +15,6 @@ const port = process.env.PORT;
 const {connection} = require('./helpers/dbConnect'); //* requiero la conexión con la base de datos
 
 
-
-
 //* módulo cors
 const cors = require('cors');
 

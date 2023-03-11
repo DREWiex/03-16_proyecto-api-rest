@@ -1,6 +1,6 @@
 const Servicio = require('../models/servicioModel'); //* en mayúscula porque es una clase
 
-const Instalacion = require('../models/instalacionModel');
+const Location = require('../models/locationModel');
 
 const getIndex = (req, res) => { 
 
@@ -18,8 +18,8 @@ const getServicios = async (req, res) => {
         const servicios = await Servicio.find();
 
         res.render('servicios',{
-            title: 'Este es el título de servicios',
-            text: 'Este es el párrafo de servicios.',
+            title: 'Servicios',
+            text: 'Toma un café o diferentes infusiones calientes mientras esperas la hora de tu cita. También tienes una máquina recreativa y una mesa de ping pong. ¡Pásalo en grande!',
             servicios
         });
         
@@ -34,22 +34,22 @@ const getServicios = async (req, res) => {
 const getProductos = (req, res) => {
 
     res.render('productos', {
-        title: 'Este es el título de productos',
+        title: 'Productos',
         text: 'Este es el párrafo de productos.',
     });
 
 }; //!FUNC-GETPRODUCTOS
 
-const getInstalaciones = async (req, res) => {
+const getLocations = async (req, res) => {
 
     try {
 
-        const instalaciones = await Instalacion.find();
+        const locations = await Location.find();
 
-        res.render('instalaciones',{
-            title: 'Este es el título de instalaciones',
-            text: 'Este es el párrafo de instalaciones',
-            instalaciones
+        res.render('locations',{
+            title: 'Sucursales',
+            text: 'Puedes reservar cita con nosotros en cualquiera de las siguientes ciudades:',
+            locations
         })
                 
     } catch (error) {
@@ -63,7 +63,7 @@ const getInstalaciones = async (req, res) => {
 const getQuienesSomos = (req, res) => {
 
     res.render('quienessomos', {
-        title: 'Este es el título de quiénes somos',
+        title: 'Quiénes Somos',
         text: 'Este es el párrafo de quiénes somos.',
     });
 
@@ -72,7 +72,7 @@ const getQuienesSomos = (req, res) => {
 const getContacto = (req, res) => {
 
     res.render('contacto', {
-        title: 'Este es el título de contacto',
+        title: 'Contacto',
         text: 'Este es el párrafo de contacto.',
     });
 
@@ -91,4 +91,4 @@ const getNavOtros = (req, res) => {
 }; //!FUNC-GETNAVOTROS
 
 
-module.exports = {getIndex, getServicios, getProductos, getInstalaciones, getQuienesSomos, getContacto, getNav, getNavOtros};
+module.exports = {getIndex, getServicios, getProductos, getLocations, getQuienesSomos, getContacto, getNav, getNavOtros};
