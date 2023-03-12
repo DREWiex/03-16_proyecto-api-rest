@@ -21,6 +21,11 @@ const cors = require('cors');
 app.use(cors());
 
 
+//* parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false }));
+//* parse application/json
+app.use(express.json());
+
 //* configuración carpeta estática public
 app.use(express.static(`${__dirname}/public`));
 

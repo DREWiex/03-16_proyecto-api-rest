@@ -11,7 +11,6 @@ const ServicioSchema = new Schema({
     },
     foto: {
         type: String,
-        required: true
     },
     fecha: {
         type: Date,

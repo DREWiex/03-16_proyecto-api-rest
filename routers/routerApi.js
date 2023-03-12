@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const {getServicio, getServicios, crearServicio, actualizarServicio, eliminarServicio} = require('../controllers/api.Controllers');
+const {getServicios, getServicio, crearServicio, actualizarServicio, eliminarServicio} = require('../controllers/apiControllers');
 
 //* obtener todos los productos
 router.get('/servicios', getServicios);
