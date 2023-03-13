@@ -84,16 +84,47 @@ const actualizarUsuario = async (req, res) => {
         const id = req.params.id;
         const body = req.body;
 
+        const actUsuario = await Usuario.findByIdAndUpdate(id,{$set:body},{new:true});
+
+        return res.status(200).json({
+            ok: true,
+            msg: 'El usuario se ha actualizado correctamente.',
+            data: actUsuario
+        });
+
     } catch (error) {
+
+        return res.status(500).json({
+            ok: false,
+            msg: 'ERROR: el usuario que intenta actualizar no existe.'
+        });
         
-    }
+    };
 
 }; //!FUNC-ACTUALIZARUSUARIO
 
 
 const eliminarUsuario = async (req, res) => {
 
+    try {
 
+        const id = req.params.id;
+
+        await Usuario.findByIdAndDelete(id);
+
+        return res.status(200).json({
+            ok: true,
+            msg: 'Se ha eliminado el usuario correctamente.',
+        });
+        
+    } catch (error) {
+        
+        return res.status(500).json({
+            ok: false,
+            msg: 'ERROR: el usuario que intenta eliminar no existe en la base de datos.'
+        });
+
+    };
 
 }; //!FUNC-ELIMINARUSUARIO
 
