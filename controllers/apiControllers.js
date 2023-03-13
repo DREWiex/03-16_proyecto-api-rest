@@ -17,10 +17,10 @@ const getServicios = async (req, res) => {
         
         return res.status(500).json({
             ok: false,
-            msg: 'ERROR: no se han podido obtener todos los servicios.'
+            msg: 'ERROR: contacta con el administrador.'
         });
 
-    }
+    };
 
 }; //!FUNC-GETSERVICIOS
 
@@ -34,12 +34,24 @@ const getServicio = async (req, res) => {
         
         const servicio = await Servicio.findById(id);
 
+        if(!servicio){ //! no cambia nada…
+
+            return res.status(404).json({
+                ok: false,
+                msg: 'ERROR: No hay ningún servicio con el ID indicado'
+            });
+
+        }else{
+
         return res.status(200).json({
+
             ok: true,
             msg: 'Obteniendo un servicio.',
             data: servicio
-        });
+            });
 
+        };
+            
     } catch (error) {
         return res.status(500).json({
             ok: false,
@@ -53,17 +65,17 @@ const getServicio = async (req, res) => {
 //* función que cree un servicio
 const crearServicio = async (req, res) => {
 
+    const newServicio = new Servicio(req.body);
+
     try {
 
-        const NewServicio = new Servicio(req.body);
-
-        const newData = await NewServicio.save();
+        const newData = await newServicio.save();
         
         return res.status(201).json({
-                ok: true,
-                msg: 'Servicio creado correctamente.',
-                data: newData
-            });
+            ok: true,
+            msg: 'Servicio creado correctamente.',
+            data: newData
+        });
 
     } catch (error) {
         
@@ -72,7 +84,7 @@ const crearServicio = async (req, res) => {
             msg: 'ERROR: no se ha podido crear el servicio.'
         });
 
-    }
+    };
 
 }; //!FUNC-CREARSERVICIO
 
@@ -113,6 +125,8 @@ const eliminarServicio = async (req, res) => {
 
         const id = req.params.id;
 
+        //! comprobar: findById(id) if(si no existe, 404), else(eliminar)
+
         await Servicio.findOneAndDelete({_id:id});
 
         return res.status(200).json({
@@ -127,7 +141,7 @@ const eliminarServicio = async (req, res) => {
             msg: 'ERROR: el servicio que quiere eliminar no existe.'
         });
 
-    }
+    };
 
 }; //!FUNC-ELIMINARSERVICIO
 

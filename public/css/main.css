@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;1,400&display=swap');
-
+/*TRABAJAR REM EN FUNCIÓN DEL FONT-SIZE DEL NAVEGADOR / GAP CON PX / CORREGIR NAVS*/
 :root {
     --darkblue: #0A2463;
     --lightblue: #3E92CC;
     --white: #FFFAFF;
     --black: #1E1B18;
     --red: #D8315B;
-    font-size: 10px;
+    /* font-size: 10px; */
 }
 
 *{
@@ -15,10 +15,9 @@
     box-sizing: border-box;
 }
 
-html{
+/* html{
     height: 90%;
-    margin: 0.5rem;
-}
+} */
 
 body{
     font-family: 'Montserrat', sans-serif;
@@ -34,6 +33,7 @@ body{
     "nav" 10%
     "main" auto
     "footer" 10%;
+    align-items: center;
 }
 
 .grid-container > *{
@@ -42,11 +42,13 @@ body{
 
 .header{
     grid-area: header;
+    align-self: center;
+    background-color: var(--black);
     padding: 3rem;
 }
 
 header > *{
-    font-size: 4rem;
+    font-size: 3rem;
     text-transform: uppercase;
     font-weight: 700;
     word-spacing: 1rem;
@@ -65,14 +67,15 @@ header > *{
 
 .grid-container-nav-otros{
     display: grid;
-    grid-template-columns: repeat(6, 1fr);   
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
 }
 
 a, a:hover, a:link, a:visited{
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-decoration: none;
     text-transform: uppercase;
-    color: var(--darkblue);
+    color: var(--red);
     margin: 0.5rem;
 }
 
@@ -93,7 +96,7 @@ a, a:hover, a:link, a:visited{
 
 .title{
     grid-area: title;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     text-align: center;
     color: var(--black);
     padding: 1.5rem;
@@ -101,7 +104,7 @@ a, a:hover, a:link, a:visited{
 
 .text{
     grid-area: text;
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-align: center;
     color: var(--black);
     padding: 0.75rem;
@@ -124,12 +127,12 @@ tbody tr:hover{
 }
 
 th{
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     padding: 0.8rem;
 }
 
 td{
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: 0.6rem;
     border-bottom: 0.1rem solid var(--black);
 }
@@ -140,6 +143,8 @@ td{
 
 .footer{
     grid-area: footer;
+    align-self: center;
+    background-color: var(--black);
     padding: 2.5rem;
 }
 
@@ -149,8 +154,8 @@ td{
 }
 
 footer > *{
-    font-size: 2.5rem;
-    color: var(--darkblue);
+    font-size: 1.8rem;
+    color: var(--red);
 }
 
 @media screen and (min-width:768px) {
@@ -170,7 +175,7 @@ footer > *{
     .grid-container{
         grid-template:
         "header header" 15%
-        "nav main" auto
+        "nav main" 75%
         "footer footer" 10% /
         20% auto;
     }

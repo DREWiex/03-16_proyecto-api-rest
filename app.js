@@ -40,6 +40,8 @@ app.use('/', require('./routers/routerFront')); //* función middleware para las
 
 app.use('/api/v1', require('./routers/routerApi')); //* función middleware para las rutas del back
 
+app.use('/api/v1', require('./routers/routerUsuario')) //* función middleware para las rutas de usuarios
+
 app.use((req, res, next) => {
 
     res.status(404).render('404', {

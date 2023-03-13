@@ -2,21 +2,35 @@ const express = require('express');
 
 const router = express.Router();
 
+//* importar el método check() del componente express-validator
+const {check} = require('express-validator');
+
+//* importar la func de la carpeta middleware
+const {validarInputs} = require('../middleware/validateInputs');
+
 const {getServicios, getServicio, crearServicio, actualizarServicio, eliminarServicio} = require('../controllers/apiControllers');
 
-//* obtener todos los productos
+//* obtener todos los servicios
 router.get('/servicios', getServicios);
 
-//* obtener un producto
+//* obtener un servicio
 router.get('/servicios/:id', getServicio);
 
-//* crear un producto
-router.post('/servicios', crearServicio);
+//* crear un servicio
+router.post('/servicios',[
+    check('servicio', 'El servicio es obligatorio').not().isEmpty(),
+    check('descripcion', 'La descripción es obligatoria').not().isEmpty(),
+    validarInputs
+], crearServicio);
 
-//* actualizar un producto
-router.put('/servicios/:id', actualizarServicio);
+//* actualizar un servicio
+router.put('/servicios/:id',[
+    check('servicio', 'El servicio es obligatorio').not().isEmpty(),
+    check('descripcion', 'La descripción es obligatoria').not().isEmpty(),
+    validarInputs
+], actualizarServicio);
 
-//* eliminar un producto
+//* eliminar un servicio
 router.delete('/servicios/:id', eliminarServicio);
 
 
