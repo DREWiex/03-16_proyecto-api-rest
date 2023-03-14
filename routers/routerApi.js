@@ -11,27 +11,27 @@ const {validarInputs} = require('../middleware/validateInputs');
 const {getServicios, getServicio, crearServicio, actualizarServicio, eliminarServicio} = require('../controllers/apiControllers');
 
 //* obtener todos los servicios
-router.get('/servicios', getServicios);
+router.get('/', getServicios);
 
 //* obtener un servicio
-router.get('/servicios/:id', getServicio);
+router.get('/:id', getServicio);
 
 //* crear un servicio
-router.post('/servicios',[
+router.post('/',[
     check('servicio', 'El servicio es obligatorio').not().isEmpty(),
     check('descripcion', 'La descripción es obligatoria').not().isEmpty(),
     validarInputs
 ], crearServicio);
 
 //* actualizar un servicio
-router.put('/servicios/:id',[
+router.put('/:id',[
     check('servicio', 'El servicio es obligatorio').not().isEmpty(),
     check('descripcion', 'La descripción es obligatoria').not().isEmpty(),
     validarInputs
 ], actualizarServicio);
 
 //* eliminar un servicio
-router.delete('/servicios/:id', eliminarServicio);
+router.delete('/:id', eliminarServicio);
 
 
 module.exports = router;

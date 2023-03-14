@@ -95,10 +95,12 @@ const actualizarServicio = async (req, res) => {
     try {
 
         const id = req.params.id;
+        //const body = req.body;
         const servicio = req.body.servicio;
         const descripcion = req.body.descripcion;
 
         const servicioAct = await Servicio.findOneAndUpdate({_id:id},{$set:{servicio,descripcion}},{new:true}); //* {new:true} muestra la última act. en Postman (false mostraría el body con los keys/values originales, es decir, antes de act.)
+        //const servicioAct = await Servicio.findOneAndUpdate(id,{$set:body},{new:true});
         
         return res.status(200).json({
                 ok: true,
@@ -128,6 +130,7 @@ const eliminarServicio = async (req, res) => {
         //! comprobar: findById(id) if(si no existe, 404), else(eliminar)
 
         await Servicio.findOneAndDelete({_id:id});
+        //await Servicio.findByIdAndDelete(id);
 
         return res.status(200).json({
             ok: true,

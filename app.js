@@ -14,6 +14,7 @@ const port = process.env.PORT;
 //* conectar con la base de datos (mongodb)
 const {connection} = require('./helpers/dbConnect'); //* requiero la conexión con la base de datos
 
+connection(); //! llamo a la función que conecta con la base de datos
 
 //* módulo cors
 const cors = require('cors');
@@ -21,26 +22,29 @@ const cors = require('cors');
 app.use(cors());
 
 
-//* parse application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: false }));
-//* parse application/json
-app.use(express.json());
-
 //* configuración carpeta estática public
 app.use(express.static(`${__dirname}/public`));
 
 
 //* configuración template engine y carpeta views
 app.set('view engine', 'ejs');
+
 app.set('views', `${__dirname}/views`);
+
+
+//* parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false }));
+//* parse application/json
+app.use(express.json());
 
 
 //* routers
 app.use('/', require('./routers/routerFront')); //* función middleware para las rutas del front
 
-app.use('/api/v1', require('./routers/routerApi')); //* función middleware para las rutas del back
+app.use('/api/v1/servicios', require('./routers/routerApi')); //* función middleware para las rutas del back
 
-app.use('/api/v1', require('./routers/routerUsuario')) //* función middleware para las rutas de usuarios
+app.use('/api/v1/usuarios', require('./routers/routerUsuario')); //* función middleware para las rutas de usuarios
+
 
 app.use((req, res, next) => {
 
@@ -50,9 +54,6 @@ app.use((req, res, next) => {
     });
 
 });
-
-
-connection(); //! llamo a la función que conecta con la base de datos
 
 
 //* servidor a la escucha (siempre al final)
