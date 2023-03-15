@@ -17,7 +17,7 @@ router.get('/', getIndex); //* paso la referencia de la función, no la invocaci
 router.get('/servicios', getServicios);
 
 //* PRODUCTOS
-router.get('/productos', searchGoogle, getProductos);
+router.get('/productos', getProductos); //* pendiente scrapping
 
 //* INSTALACIONES
 router.get('/locations', getLocations);

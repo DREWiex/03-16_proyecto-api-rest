@@ -45,6 +45,8 @@ app.use('/api/v1/servicios', require('./routers/routerApi')); //* función middl
 
 app.use('/api/v1/usuarios', require('./routers/routerUsuario')); //* función middleware para las rutas de usuarios
 
+app.use('/admin', require('./routers/routerAdmin'))
+
 
 app.use((req, res, next) => {
 
@@ -59,6 +61,6 @@ app.use((req, res, next) => {
 //* servidor a la escucha (siempre al final)
 app.listen(port, () => {
 
-    console.log(`A la escucha del puerto ${port}`);
+    console.log(`Servidor a la escucha del puerto: ${port}`);
 
 });

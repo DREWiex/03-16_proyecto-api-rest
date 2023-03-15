@@ -64,9 +64,7 @@ const loginUsuario = async (req, res) => {
 
         const user = await Usuario.findOne({email});
 
-        const passwordOK = bcrypt.compare(password, user.password); //* compare es para async
-
-        console.log(passwordOK);
+        const passwordOK = bcrypt.compareSync(password, user.password); //* compare es para async
 
         if(!user || passwordOK == false){
             return res.status(400).json({
@@ -79,12 +77,10 @@ const loginUsuario = async (req, res) => {
 
             return res.status(200).json({
                 ok: true,
-                msg: `E-mail y contraseña correctos. ¡Bienvenido!`,
-                data:{
-                    name: user.usuario,
-                    email: email,
-                    uid: user._id
-                },
+                msg: `Credenciales correctas. ¡Bienvenido, ${user.usuario}!`,
+                name: user.usuario,
+                email,
+                uid: user._id,
                 token
             });
         };
@@ -131,8 +127,9 @@ const crearUsuario = async (req, res) => {
 
             return res.status(201).json({
                 ok: true,
-                msg: 'El usuario se ha creado correctamente.',
-                data: newData,
+                uid: newData.id,
+                name: newData.usuario,
+                email: newData.email,
                 token
             });
 
