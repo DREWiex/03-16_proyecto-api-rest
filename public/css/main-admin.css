@@ -136,6 +136,30 @@ td{
     width: 30%;
 }
 
+.grid-container-form{
+    display: grid;
+    grid-template:
+    "servicio" auto
+    "descripcion"  auto
+    "submit" auto /
+    70%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.servicio{
+    grid-area: servicio;
+}
+
+.descripcion{
+    grid-area: descripcion;
+}
+
+.submit{
+    grid-area: submit;
+}
+
 .footer{
     grid-area: footer;
     align-self: center;

@@ -6,13 +6,13 @@
 
     <h2> Editar servicio: </h2>
 
-<form action="/admin/servicios/actualizar/<%= servicios._id %>" method="POST"> <!-- aquí me lleva a esta ruta y ejecuta su controller -->
+<form class="grid-container-form" action="/admin/servicios/actualizar/<%= servicios._id %>" method="POST"> <!-- aquí me lleva a esta ruta y ejecuta su controller -->
 
-    <input type="text" id="servicio" name="servicio" placeholder="Nombre del servicio" value=" <%= servicios.servicio %> "> <!-- id y name tienen que ser el mismo que la propiedad a la que hace referencia -->
+    <input class="servicio" type="text" id="servicio" name="servicio" placeholder="Nombre del servicio" value=" <%= servicios.servicio %> "> <!-- id y name tienen que ser el mismo que la propiedad a la que hace referencia -->
 
-    <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción del servicio"> <%= servicios.descripcion %> </textarea>
+    <textarea class="descripcion" name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción del servicio"> <%= servicios.descripcion %> </textarea>
 
-    <input type="submit" value="Añadir servicio">
+    <input class="input" type="submit" value="Añadir servicio">
 
 </form>
 

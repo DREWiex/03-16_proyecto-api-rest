@@ -52,7 +52,7 @@ header > *{
 
 .nav{
     grid-area: nav;
-    align-self: center;
+    align-self: stretch;
 }
 
 .grid-container-nav{
@@ -153,7 +153,7 @@ footer > *{
     color: var(--red);
 }
 
-@media screen and (min-width:768px) {
+/* @media screen and (min-width:768px) {
     .grid-container{
         grid-template:
         "header header" 15%
@@ -164,7 +164,7 @@ footer > *{
     .nav{
         align-self: stretch;
     }
-}/*768px end*/
+}768px end */
 
 @media screen and (min-width:992px) {
     .grid-container{

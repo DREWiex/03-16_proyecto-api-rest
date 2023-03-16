@@ -2,14 +2,20 @@
 
 <%- include('./templates/nav-index.ejs') %>
 
-<form action="/admin/servicios/crear-servicio" method="POST"> <!-- aquí me lleva a esta ruta y ejecuta su controller -->
+<main>
 
-    <input type="text" id="servicio" name="servicio" placeholder="Nombre del servicio"> <!-- id y name tienen que ser el mismo que la propiedad a la que hace referencia -->
+    <h2>Crear servicio:</h2>
 
-    <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción del servicio"></textarea>
+    <form class="grid-container-form" action="/admin/servicios/crear-servicio" method="POST"> <!-- aquí me lleva a esta ruta y ejecuta su controller -->
 
-    <input type="submit" value="Añadir servicio">
+        <input class="servicio" type="text" id="servicio" name="servicio" placeholder="Nombre del servicio"> <!-- id y name tienen que ser el mismo que la propiedad a la que hace referencia -->
 
-</form>
+        <textarea class="descripcion" name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción del servicio"></textarea>
+
+        <input class="submit" type="submit" value="Añadir servicio">
+
+    </form>
+
+</main>
 
 <%- include('./templates/footer.ejs') %>

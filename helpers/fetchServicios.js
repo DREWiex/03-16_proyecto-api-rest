@@ -21,38 +21,17 @@ const consulta = async (url, method, body={}) => { //* spread operator para el b
         if(method == 'delete'){
             options = {
                 method
-            //! pendiente
             }
         };
 
-        // if(method == 'get'){
-        //     options = {
-        //         method,
-        //     //? authenticaton para el headers?
-        //     }
-        // };
-
         return await fetch(`${urlBase}/${url}`, options);
-
-        //return respuesta;
-
-        // if(respuesta.ok){
-        //     return {
-        //         ok: true,
-        //         respuesta
-        //     };
-        // };
         
     } catch (error) {
 
         console.log(error);
 
-        // return {
-        //     ok: false,
-        //     msg: 'Error en la conexión',
-        //     error
-        // };
     };
+
 }; //!FUNC-CONSULTA
 
 
