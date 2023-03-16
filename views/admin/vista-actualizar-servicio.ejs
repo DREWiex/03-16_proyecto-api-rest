@@ -1,0 +1,21 @@
+<%- include('./templates/header.ejs') %>
+
+<%- include('./templates/nav-index.ejs') %>
+
+<main>
+
+    <h1>Actualizar usuario:</h1>
+
+<form action="/admin/servicios/crear-servicio" method="POST"> <!-- aquí me lleva a esta ruta y ejecuta su controller -->
+
+    <input type="text" id="servicio" name="servicio" placeholder="Nombre del servicio" value=" <%= servicio.servicio %> "> <!-- id y name tienen que ser el mismo que la propiedad a la que hace referencia -->
+
+    <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción del servicio"> <%= servicio.descripcion %> </textarea>
+
+    <input type="submit" value="Añadir servicio">
+
+</form>
+
+</main>
+
+<%- include('./templates/footer.ejs') %>

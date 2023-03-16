@@ -38,7 +38,7 @@ body{
 .header{
     grid-area: header;
     align-self: center;
-    background-color: var(--black);
+    background-color: var(--red);
     padding: 3rem;
 }
 
@@ -47,7 +47,7 @@ header > *{
     text-transform: uppercase;
     font-weight: 700;
     word-spacing: 1rem;
-    color: var(--red)
+    color: var(--white)
 }
 
 .nav{
@@ -70,7 +70,7 @@ a, a:hover, a:link, a:visited{
     font-size: 0.9rem;
     text-decoration: none;
     text-transform: uppercase;
-    color: var(--red);
+    color: var(--black);
     margin: 0.5rem;
 }
 
@@ -139,7 +139,7 @@ td{
 .footer{
     grid-area: footer;
     align-self: center;
-    background-color: var(--black);
+    background-color: var(--red);
     padding: 2.5rem;
 }
 
@@ -150,7 +150,7 @@ td{
 
 footer > *{
     font-size: 1.8rem;
-    color: var(--red);
+    color: var(--white);
 }
 
 @media screen and (min-width:768px) {

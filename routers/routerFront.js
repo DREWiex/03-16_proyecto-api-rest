@@ -6,10 +6,9 @@ const router = express.Router();
 
 const {getIndex, getServicios, getProductos, getLocations, getQuienesSomos, getContacto, getNav, getNavOtros} = require('../controllers/frontControllers'); //* destructuring de las funciones (solo el nombre –sin paréntesis–, no la invocación) que están en el archivo frontControllers.js en la ruta del controllers
 
-const {searchGoogle} = require('../helpers/scrap')
+const {searchGoogle} = require('../helpers/scrap') //! pendiente scrapping
 
 
-//! crear las rutas:
 //* INDEX
 router.get('/', getIndex); //* paso la referencia de la función, no la invocación
 
@@ -17,7 +16,7 @@ router.get('/', getIndex); //* paso la referencia de la función, no la invocaci
 router.get('/servicios', getServicios);
 
 //* PRODUCTOS
-router.get('/productos', getProductos); //* pendiente scrapping
+router.get('/productos', getProductos); //! pendiente scrapping
 
 //* INSTALACIONES
 router.get('/locations', getLocations);

@@ -2,6 +2,9 @@ const Servicio = require('../models/servicioModel'); //* en mayúscula porque es
 
 const Location = require('../models/locationModel');
 
+const {consulta} = require('../helpers/fetchServicios'); //! lo pasamos a getServicios sin el try/catch
+
+
 const getIndex = (req, res) => { 
 
     res.render('index', {
@@ -11,25 +14,44 @@ const getIndex = (req, res) => {
 
 }; //!FUNC-GETINDEX
 
+// const getServicios = async (req, res) => {
+
+//     try {
+
+//         const servicios = await Servicio.find();
+
+//     res.render('servicios',{
+//         title: 'Servicios',
+//         text: 'Toma un café o diferentes infusiones calientes mientras esperas la hora de tu cita. También tienes una máquina recreativa y una mesa de ping pong. ¡Pásalo en grande!',
+//         servicios: servicios //! servicios: data
+//     });
+        
+//     } catch (error) {
+
+//         console.log(error);
+        
+//     };
+
+// }; //!FUNC-GETSERVICIOS
+
+
 const getServicios = async (req, res) => {
 
-    try {
+    const url = 'servicios';
+    const method = 'get';
 
-        const servicios = await Servicio.find();
+    const respuesta = await consulta(url, method);
 
-        res.render('servicios',{
-            title: 'Servicios',
-            text: 'Toma un café o diferentes infusiones calientes mientras esperas la hora de tu cita. También tienes una máquina recreativa y una mesa de ping pong. ¡Pásalo en grande!',
-            servicios
-        });
-        
-    } catch (error) {
+    const {data} = await respuesta.json(); //* destructuro el json()
 
-        console.log(error);
-        
-    };
-
+    res.render('servicios', {
+        title: 'Servicios',
+        text: 'Toma un café o diferentes infusiones calientes mientras esperas la hora de tu cita. También tienes una máquina recreativa y una mesa de ping pong. ¡Pásalo en grande!',
+        servicios: data
+    });
+    
 }; //!FUNC-GETSERVICIOS
+
 
 const getProductos = (req, res) => {
 
@@ -91,4 +113,13 @@ const getNavOtros = (req, res) => {
 }; //!FUNC-GETNAVOTROS
 
 
-module.exports = {getIndex, getServicios, getProductos, getLocations, getQuienesSomos, getContacto, getNav, getNavOtros};
+module.exports = {
+    getIndex,
+    getServicios,
+    getProductos,
+    getLocations,
+    getQuienesSomos,
+    getContacto,
+    getNav,
+    getNavOtros
+};

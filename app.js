@@ -45,7 +45,7 @@ app.use('/api/v1/servicios', require('./routers/routerApi')); //* función middl
 
 app.use('/api/v1/usuarios', require('./routers/routerUsuario')); //* función middleware para las rutas de usuarios
 
-app.use('/admin', require('./routers/routerAdmin'))
+app.use('/admin', require('./routers/routerAdmin'));
 
 
 app.use((req, res, next) => {
