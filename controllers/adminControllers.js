@@ -1,7 +1,7 @@
 const {consulta} = require('../helpers/fetchServicios');
 
 
-// //* mostrar todos los servicios
+//* mostrar todos los servicios
 const mostrarServicios = async (req, res) => {
 
     const url = 'servicios';
@@ -20,11 +20,8 @@ const mostrarServicios = async (req, res) => {
 }; //!FUNC-MOSTRARSERVICIOS
 
 
-//* mostrar el formulario
+//* mostrar el formulario de crear un nuevo servicio
 const formCrearServicio = async (req, res) => {
-
-    //* desde el formulario de esta página le pasaré los datos a la página de crear el servicio
-    //* llamar a la función crearServicio() y pasarle los argumentos correspondientes (body, method, url) desde aquí
 
     res.render('../views/admin/vista-nuevo-servicio.ejs');
 
@@ -40,39 +37,67 @@ const crearServicio = async (req, res) => {
     const url = 'servicios'; //! para el put habría que añadir el id
     const method = 'post';
 
-    const respuesta = await consulta(url, method, body);
-
-    const {ok, data} = respuesta;
+    await consulta(url, method, body);
 
 
-    res.redirect('/admin/servicios/nuevo');
+    res.redirect('/admin/servicios');
 
 }; //!FUNC-CREARSERVICIO
 
 
-//* actualizar un servicio
-const formActualizarServicio = async (req, res) => {
+//* mostrar el formulario de editar un servicio
+const formEditarServicio = async (req, res) => {
+    
+    const id = req.params.id;
 
-//* desde la ruta donde están todos los servicios (/admin/servicios), con un botón (<a href="url/editar">) "editar" me manda a una nueva ruta (/admin/servicios/editar/:id) donde se cargan todos los datos del servicio
-//* pasar a esa otra url con el id del servicio, los valores que ya tiene en la bbdd (servicio, descripcion)
+    const url = `servicios/${id}`;
+    const method = 'get';
 
-    try {
+    const respuesta = await consulta(url, method);
 
-        const id = req.params.id; //? capturo el id de la url?
+    const {data} = await respuesta.json()
 
-        res.render('../views/admin/vista-actualizar-servicio', {});
-        
-    } catch (error) {
-        
-    }
 
-}; //!FUNC-FORMACTUALIZARSERVICIO
+    res.render('../views/admin/vista-actualizar-servicio',{
+        servicios: data
+    });
+
+}; //!FUNC-FORMEDITARSERVICIO
+
+
+const actualizarServicio = async (req, res) => {
+
+    const id = req.params.id;
+
+    const url = `servicios/${id}`;
+    const method = 'put';
+
+    const {servicio, descripcion} = req.body;
+    const body = {servicio, descripcion};
+
+    await consulta(url, method, body);
+
+
+    res.redirect('/admin/servicios');
+
+}; //!FUNC-ACTUALIZARSERVICIO
 
 
 //* eliminar un servicio
 const eliminarServicio = async (req, res) => {
 
+    const id = req.params.id;
 
+    const url = `servicios/${id}`;
+    const method = 'delete';
+
+    const {servicio, descripcion} = req.body;
+    const body = {servicio, descripcion};
+
+    await consulta(url, method, body);
+
+
+    res.redirect('/admin/servicios');
 
 }; //!FUNC-ELIMINARSERVICIO
 
@@ -82,6 +107,7 @@ module.exports = {
     mostrarServicios,
     formCrearServicio,
     crearServicio,
-    formActualizarServicio,
+    formEditarServicio,
+    actualizarServicio,
     eliminarServicio
 };

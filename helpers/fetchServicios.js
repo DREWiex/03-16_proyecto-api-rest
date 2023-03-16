@@ -20,7 +20,7 @@ const consulta = async (url, method, body={}) => { //* spread operator para el b
 
         if(method == 'delete'){
             options = {
-                method,
+                method
             //! pendiente
             }
         };

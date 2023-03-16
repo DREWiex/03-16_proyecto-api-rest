@@ -1,28 +1,32 @@
 const express = require('express');
 const router = express.Router();
 
-const {mostrarServicios, formCrearServicio, crearServicio, formActualizarServicio, eliminarServicio} = require('../controllers/adminControllers');
+const {mostrarServicios, formCrearServicio, crearServicio, formEditarServicio, actualizarServicio, eliminarServicio} = require('../controllers/adminControllers');
 
 
 
-//* MOSTRAR TODOS LOS SERVICIOS (INDEX DEL ADMIN)
+//* MOSTRAR TODOS LOS SERVICIOS
 router.get('/servicios', mostrarServicios);
 
 
-//* MOSTRAR EL FORMULARIO (DESDE ADMIN)
+//* MOSTRAR EL FORMULARIO DE CREAR SERVICIO
 router.get('/servicios/nuevo', formCrearServicio);
 
 
-//* CREAR NUEVO SERVICIO (DESDE ADMIN)
+//* CREAR NUEVO SERVICIO
 router.post('/servicios/crear-servicio', crearServicio);
 
 
-//* ACTUALIZAR SERVICIO
-router.put('/servicios/editar/:id', formActualizarServicio); //! pendiente ruta
+//* MOSTRAR EL FORMULARIO DE EDITAR SERVICIO
+router.get('/servicios/editar/:id', formEditarServicio);
 
 
-//* ELIMINAR SERVICIO
-router.delete('/', eliminarServicio); //! pendiente ruta
+//* EDITAR UN SERVICIO
+router.post('/servicios/actualizar/:id', actualizarServicio);
+
+
+// //* ELIMINAR SERVICIO
+router.get('/servicios/eliminar/:id', eliminarServicio);
 
 
 

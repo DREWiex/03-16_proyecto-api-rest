@@ -26,6 +26,10 @@
                                 <td class="celda-servicio"> <%= item.servicio %> </td>
                                 <td> <%= item.descripcion %> </td>
                             </tr>
+                            <tr>
+                                <td><a href="/admin/servicios/editar/<%= item._id %>">Editar</a></td>
+                                <td><a href="/admin/servicios/eliminar/<%= item._id %>">Eliminar</a></td>
+                            </tr>
                             <% }) %>
 
                         <% } else { %>
