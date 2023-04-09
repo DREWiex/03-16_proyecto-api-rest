@@ -2,148 +2,91 @@ const Usuario = require('../models/usuarioModel');
 
 const bcrypt = require('bcryptjs');
 
-const {generarJWT} = require('../helpers/jwt');
+const { generarJWT } = require('../helpers/jwt');
 
-
-const getUsuarios = async (req, res) => {
-
-    try {
-
-        const usuarios = await Usuario.find();
-
-        return res.status(200).json({
-            ok: true,
-            msg: 'Obtengo todos los usuarios.',
-            data: usuarios
-        });
-        
-    } catch (error) {
-
-        return res.status(500).json({
-            ok: false,
-            msg: 'ERROR: no se están obteniendo todos los usuarios.'
-        });
-        
-    };
-
-}; //!FUNC-GETUSUARIOS
-
-
-const getUsuario = async (req, res) => {
-
-    // try {
-
-    //     const id = req.params.id;
-        
-    //     const usuario = await Usuario.findById(id);
-
-    //     return res.status(200).json({
-    //         ok: true,
-    //         msg: 'Obteniendo un usuario.',
-    //         data: usuario
-    //     });
-
-    // } catch (error) {
-
-    //     return res.status(500).json({
-    //         ok: false,
-    //         msg: 'ERROR: no existe ningún usuario con el id indicado.'
-    //     });
-        
-    // };
-
-};  //!FUNC-GETUSUARIO
-
-
-const loginUsuario = async (req, res) => {
-
-    const {email, password} = req.body;
-
-    try {
-
-        const user = await Usuario.findOne({email});
-
-        const passwordOK = bcrypt.compareSync(password, user.password); //* compare es para async
-
-        if(!user || passwordOK == false){
-            return res.status(400).json({
-                ok: false,
-                msg: 'ERROR: contraseña o e-mail incorrecto.'
-            });
-        } else {
-
-            const token = await generarJWT(user._id, user.usuario);
-
-            return res.status(200).json({
-                ok: true,
-                msg: `Credenciales correctas. ¡Bienvenido, ${user.usuario}!`,
-                name: user.usuario,
-                email,
-                uid: user._id,
-                token
-            });
-        };
-        
-    } catch (error) {
-        
-        return res.status(500).json({
-            ok: false,
-            msg: 'ERROR: contactar con el administrador.'
-        });
-
-    }
-
-}; //!FUNC-LOGINUSUARIO
 
 
 const crearUsuario = async (req, res) => {
 
-    const {usuario, email, password} = req.body;
-
-    const newUsuario = new Usuario(req.body);
+    const nuevoUsuario = new User(req.body);
 
     try {
 
-        const user = await Usuario.findOne({email});
+        // encriptar password
+        let salt = bcrypt.genSaltSync(10);
+        nuevoUsuario.password = bcrypt.hashSync(req.body.password, salt);
 
-        if(user){
+        const user = await nuevoUsuario.save();
 
-            return res.status(400).json({
+        // generar token
+        const token = generarJWT(user._id, user.name);
+
+        return res.status(201).json({
+            ok: true,
+            uid: user._id,
+            name: user.name,
+            email: user.email,
+            password: user.password,
+            token
+        });
+
+    } catch (error) {
+        
+        console.log(`createUser controller error: ${error}`);
+        
+        return res.status(500).json({
+            ok: false,
+            msg: 'ERROR: contacte con el administrador.',
+            error
+        });
+
+    };
+
+}; //!FUNC-CREARUSUARIO
+
+
+const loginUsuario = async (req, res) => {
+
+    const { email, password } = req.body;
+
+    try {
+
+        const user = await Usuario.findOne( { email } );
+        
+        const pass = bcrypt.compareSync(password, user.password);
+
+        if(user == null || !pass){
+
+            return res.status(401).json({
                 ok: false,
-                msg: 'ERROR: el e-mail ya existe.'
+                msg: 'ERROR: e-maill o password incorrecto.'
             });
 
-        }else{
+        } else {
 
-            //* encriptar password
-            let salt = bcrypt.genSaltSync(10);
-            newUsuario.password = bcrypt.hashSync(password, salt);
+            const token = generarJWT(user._id, user.name);
 
-            const newData = await newUsuario.save();
-
-            //* generar token
-            const token = await generarJWT(newData.id, usuario);
-
-            return res.status(201).json({
+            return res.status(200).json({
                 ok: true,
-                uid: newData.id,
-                name: newData.usuario,
-                email: newData.email,
+                msg: 'Credenciales correctas.',
                 token
             });
 
         };
 
     } catch (error) {
-
+        
+        console.log(`createUser controller error: ${error}`);
+        
         return res.status(500).json({
             ok: false,
-            msg: 'ERROR: contacta con el administrador.'
+            msg: 'ERROR: contacte con el administrador.',
+            error
         });
-        
+
     };
 
-}; //!FUNC-CREARUSUARIO
+}; //!FUNC-LOGINUSUARIO
 
 
 const renew = async (req, res) => {
@@ -165,56 +108,9 @@ const renew = async (req, res) => {
 }; //!FUNC-RENEW
 
 
-const actualizarUsuario = async (req, res) => {
 
-    // try {
-        
-    //     const id = req.params.id;
-    //     const body = req.body;
-
-    //     const actUsuario = await Usuario.findByIdAndUpdate(id,{$set:body},{new:true});
-
-    //     return res.status(200).json({
-    //         ok: true,
-    //         msg: 'El usuario se ha actualizado correctamente.',
-    //         data: actUsuario
-    //     });
-
-    // } catch (error) {
-
-    //     return res.status(500).json({
-    //         ok: false,
-    //         msg: 'ERROR: el usuario que intenta actualizar no existe.'
-    //     });
-        
-    // };
-
-}; //!FUNC-ACTUALIZARUSUARIO
-
-
-const eliminarUsuario = async (req, res) => {
-
-    try {
-
-        const id = req.params.id;
-
-        await Usuario.findByIdAndDelete(id);
-
-        return res.status(200).json({
-            ok: true,
-            msg: 'Se ha eliminado el usuario correctamente.',
-        });
-        
-    } catch (error) {
-        
-        return res.status(500).json({
-            ok: false,
-            msg: 'ERROR: el usuario que intenta eliminar no existe en la base de datos.'
-        });
-
-    };
-
-}; //!FUNC-ELIMINARUSUARIO
-
-
-module.exports = {getUsuarios, getUsuario, loginUsuario, crearUsuario, renew, actualizarUsuario, eliminarUsuario};
+module.exports = {
+    loginUsuario,
+    crearUsuario,
+    renew
+};
